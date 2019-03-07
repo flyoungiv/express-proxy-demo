@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>YOLO</h2>
+<p>Clicking the button below will make a GET call to the server running on localhost, from server.js.
+The server.js file is configured to route all calls it gets at /proxy directly to another server.
+As an example I chose to route the request to https://jsonplaceholder.typicode.com/
+</p>
+
+<div id="demo">
+<button type="button" onclick="loadXMLDoc()">Call typicode.com using local express server</button>
+</div>
+
+<script>
+const localhost = 'http://localhost:8080/proxy/';
+const requestString = 'todos/1';
+
+function loadXMLDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", `${localhost}/${requestString}`, true);
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>
